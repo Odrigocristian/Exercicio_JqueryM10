@@ -34,5 +34,3 @@ Este é um projeto simples, mas você pode contribuir de várias maneiras, como:
 - Melhorando o design e a experiência do usuário.
 
 Se você tiver alguma ideia ou melhoria, sinta-se à vontade para fazer um fork deste repositório, fazer as alterações e enviar um pull request.
-
-## Licença
