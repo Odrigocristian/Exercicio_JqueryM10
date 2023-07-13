@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Formulário de Cadastro</h2>
+        <form id="cadastroForm">
+            <div class="form-group">
+                <label for="nomeCompleto">Nome Completo:</label>
+                <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="endereco">Endereço Completo:</label>
+                <input type="text" id="endereco" name="endereco" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" name="cep" required>
+            </div>
+        
+            <input type="submit" value="Enviar" class="submit-btn">
+        </form>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#telefone').mask('(00) 0000-0000');
+            $('#cpf').mask('000.000.000-00');
+            $('#cep').mask('00000-000');
+
+            $('#cadastroForm').validate({
+                rules: {
+                    nomeCompleto: 'required',
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    telefone: {
+                        required: true,
+                        minlength: 14
+                    },
+                    cpf: {
+                        required: true,
+                        minlength: 14
+                    },
+                    endereco: 'required',
+                    cep: {
+                        required: true,
+                        minlength: 9
+                    }
+                },
+                messages: {
+                    nomeCompleto: 'Por favor, digite o nome completo.',
+                    email: {
+                        required: 'Por favor, digite o e-mail.',
+                        email: 'Por favor, digite um e-mail válido.'
+                    },
+                    telefone: {
+                        required: 'Por favor, digite o telefone.',
+                        minlength: 'Por favor, digite um telefone válido.'
+                    },
+                    cpf: {
+                        required: 'Por favor, digite o CPF.',
+                        minlength: 'Por favor, digite um CPF válido.'
+                    },
+                    endereco: 'Por favor, digite o endereço completo.',
+                    cep: {
+                        required: 'Por favor, digite o CEP.',
+                        minlength: 'Por favor, digite um CEP válido.'
+                    }
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                },
+                invalidHandler: function(evento, validador) {
+                    let camposIncorretos = validador.numberOfInvalids();
+                    if (camposIncorretos) {
+                        alert(`Existem ${camposIncorretos} campos incorretos`);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
